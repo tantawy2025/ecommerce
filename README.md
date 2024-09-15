@@ -80,38 +80,104 @@ the products for merchants, track orders, offering seamless shopping experience
 ## Merchant Management
 
 -   [&check;] Add Merchant
+  
+![add-merchant](https://github.com/user-attachments/assets/75780979-0eda-43ce-b5ba-f08dcaf53724)
+
 -   [&check;] list Merchant
+
+![get-all-merchant](https://github.com/user-attachments/assets/b85bd0fa-30e0-4cfa-8fe1-d3e3df337097)
+
 -   [&check;] update Merchant
+
+![update-merchant](https://github.com/user-attachments/assets/221d58ed-1d18-4dd1-a2cc-041cc03d1f00)
+
+
 -   [&check;] delete Merchant
+
+![delete-merchant](https://github.com/user-attachments/assets/d3dab8c1-85fb-4918-a71a-14f5166681fd)
+
 -   [&check;] list all merchant products
+
+![list all merchant products](https://github.com/user-attachments/assets/267d3e5b-9026-4dd0-aecb-c112dc7c6d82)
+
+
 -   [&check;] list all merchant categories
+
+  ![list all merchant categories](https://github.com/user-attachments/assets/a36b490d-70de-40fa-8afc-1642a918c9e1)
+
+
 -   [&check;] Search 
+
+![search merchant](https://github.com/user-attachments/assets/db22ab07-d220-47d3-afb4-a8fc2c13d9ad)
 
 
 ## Category Management
 
 -   [&check;] Add Category
--   [&check;] list Category
--   [&check;] update Category
--   [&check;] delete Category
--   [&check;] list all category products
--   [&check;] Search 
 
+![1-add-category](https://github.com/user-attachments/assets/22193da5-a015-4fbe-9062-d031ce34ab1e)
+
+
+-   [&check;] list Category
+
+![4-list-all-categories](https://github.com/user-attachments/assets/fbeb5b03-27e4-4648-bcb6-b2747f313328)
+
+
+-   [&check;] update Category
+
+![2-update-category](https://github.com/user-attachments/assets/a9470a94-59cb-4126-a09a-b582ef667344)
+
+
+-   [&check;] delete Category
+
+![3-delete category](https://github.com/user-attachments/assets/8cbd3184-855e-4dbc-801e-3cf880c2a234)
+
+
+-   [&check;] list all category products
+
+![5-list all category products](https://github.com/user-attachments/assets/45278f4b-2b88-4697-96c7-1aa26dbf6851)
+ 
+
+-   [&check;] Search
+  
 ## Product Management
 
 -   [&check;] Add Product
+
+
+
 -   [&check;] list Product
+
+
+
 -   [&check;] update Product
+
+
 -   [&check;] delete Product
+
+
+
 -   [&check;] Search 
 
 
 ## Order Management
 
 -   [&check;] create Order
+
+
+
 -   [&check;] list Order
+
+
+
 -   [&check;] update Order / Cancel Order / process Order
+
+
+
 -   [&check;] delete Order
+
+
+
 -   [&check;] Search
   
 
@@ -120,9 +186,21 @@ the products for merchants, track orders, offering seamless shopping experience
 ## Order details (items) Management
 
 -   [&check;] create Order item
+
+
+
 -   [&check;] list Order items
+
+
+
 -   [&check;] update Order items
+
+
+
 -   [&check;] delete Order items
+
+
+
 -   [&check;] Search
 
 
