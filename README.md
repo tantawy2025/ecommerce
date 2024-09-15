@@ -39,6 +39,16 @@ the products for merchants, track orders, offering seamless shopping experience
 
 
 
+
+## 
+## Entities and tables
+![entity](https://github.com/user-attachments/assets/c0c030b8-8e90-4bb0-bb7d-7c876a5c6d91)
+
+## 
+## APIS Endpoints
+![apis2](https://github.com/user-attachments/assets/931e6e03-d7b7-4d26-a6f0-4059312f3f21)
+
+
 ## User registration & Authentication Functions
 
 #### User Registration and Authentication
@@ -103,5 +113,10 @@ the products for merchants, track orders, offering seamless shopping experience
 -   [&check;] delete Order
 -   [&check;] process Order
 -   [&check;] cancel Order
--   [&check;] Search 
+-   [&check;] Search
+  
+
+
+
+
 
