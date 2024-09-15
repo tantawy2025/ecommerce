@@ -103,7 +103,8 @@ the products for merchants, track orders, offering seamless shopping experience
 
 -   [&check;] list all merchant categories
 
-  ![list all merchant categories](https://github.com/user-attachments/assets/a36b490d-70de-40fa-8afc-1642a918c9e1)
+![list all merchant categories](https://github.com/user-attachments/assets/18661016-cbd1-4399-b8de-ec8a1996d132)
+![list all merchant products and their categories](https://github.com/user-attachments/assets/13f9dfb2-e495-4357-bac3-2d1f70b1ceaf)
 
 
 -   [&check;] Search 
@@ -135,7 +136,8 @@ the products for merchants, track orders, offering seamless shopping experience
 
 -   [&check;] list all category products
 
-![5-list all category products](https://github.com/user-attachments/assets/45278f4b-2b88-4697-96c7-1aa26dbf6851)
+![list all category products](https://github.com/user-attachments/assets/48e9af74-de4c-4792-b343-3572d01ccd6b)
+
  
 
 -   [&check;] Search
@@ -143,18 +145,21 @@ the products for merchants, track orders, offering seamless shopping experience
 ## Product Management
 
 -   [&check;] Add Product
-
-
+-   
+![1-add-product](https://github.com/user-attachments/assets/359655c3-3491-4f43-9845-d51a576727e4)
 
 -   [&check;] list Product
 
-
+![2-list-products](https://github.com/user-attachments/assets/0267d15d-8f7a-4a29-8561-bd728c7b6902)
 
 -   [&check;] update Product
+
+![3-update-product](https://github.com/user-attachments/assets/df0f659f-ce6b-4249-bb63-e5b95d484224)
 
 
 -   [&check;] delete Product
 
+![4-delete-product](https://github.com/user-attachments/assets/edc1d433-02fb-4e22-9000-4777104fa6b8)
 
 
 -   [&check;] Search 
@@ -164,18 +169,26 @@ the products for merchants, track orders, offering seamless shopping experience
 
 -   [&check;] create Order
 
+![1-order-create](https://github.com/user-attachments/assets/d64f78d8-9c91-40a6-84d2-751a9cf04a7e)
 
 
 -   [&check;] list Order
 
+![2-order-list](https://github.com/user-attachments/assets/d3b00df0-bdb6-450d-abec-134fe4c8037b)
 
 
 -   [&check;] update Order / Cancel Order / process Order
 
+![3-order-update](https://github.com/user-attachments/assets/09b22ff3-d51a-4aa6-afa1-605bc94eacc9)
+
+![3-order-cancel](https://github.com/user-attachments/assets/6bda7ef8-c580-46c2-ad18-e14ff5c33edd)
+
+![3-order-process](https://github.com/user-attachments/assets/c459e345-8703-4c57-9d4f-e6d9835eecbb)
 
 
 -   [&check;] delete Order
 
+![4-order-deleet](https://github.com/user-attachments/assets/62cf1968-0595-42ae-8f0d-82581ad3172b)
 
 
 -   [&check;] Search
@@ -187,18 +200,22 @@ the products for merchants, track orders, offering seamless shopping experience
 
 -   [&check;] create Order item
 
+![order-item-create](https://github.com/user-attachments/assets/81c56f34-8e17-46c2-9102-47b6f31105d3)
 
 
 -   [&check;] list Order items
 
+![order-item-list](https://github.com/user-attachments/assets/02ab389a-e197-456c-bbb0-ec404200a303)
 
 
 -   [&check;] update Order items
 
+![order-item-update](https://github.com/user-attachments/assets/f8402835-781a-40ca-8b53-1239e0680c2c)
 
 
 -   [&check;] delete Order items
 
+![order-item-delete](https://github.com/user-attachments/assets/105507eb-5894-46a8-a6e2-d54281940a7a)
 
 
 -   [&check;] Search
