@@ -83,8 +83,8 @@ the products for merchants, track orders, offering seamless shopping experience
 -   [&check;] list Merchant
 -   [&check;] update Merchant
 -   [&check;] delete Merchant
--   [&check;] Enable Merchant
--   [&check;] Disable Merchant
+-   [&check;] list all merchant products
+-   [&check;] list all merchant categories
 -   [&check;] Search 
 
 
@@ -94,6 +94,7 @@ the products for merchants, track orders, offering seamless shopping experience
 -   [&check;] list Category
 -   [&check;] update Category
 -   [&check;] delete Category
+-   [&check;] list all category products
 -   [&check;] Search 
 
 ## Product Management
@@ -107,16 +108,22 @@ the products for merchants, track orders, offering seamless shopping experience
 
 ## Order Management
 
--   [&check;] Add Order
+-   [&check;] create Order
 -   [&check;] list Order
--   [&check;] update Order
+-   [&check;] update Order / Cancel Order / process Order
 -   [&check;] delete Order
--   [&check;] process Order
--   [&check;] cancel Order
 -   [&check;] Search
   
 
 
+
+## Order details (items) Management
+
+-   [&check;] create Order item
+-   [&check;] list Order items
+-   [&check;] update Order items
+-   [&check;] delete Order items
+-   [&check;] Search
 
 
 
