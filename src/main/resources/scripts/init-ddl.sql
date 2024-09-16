@@ -25,7 +25,7 @@ CREATE TABLE ecommerce.merchant
     merchant_id serial,
     name character varying NOT NULL,
     email character varying NOT NULL,
-    address character varying,
+    address character varying ,
     status boolean DEFAULT true,
     PRIMARY KEY (merchant_id)
 );
