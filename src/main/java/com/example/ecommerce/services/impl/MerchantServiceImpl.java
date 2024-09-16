@@ -1,5 +1,7 @@
 package com.example.ecommerce.services.impl;
 
+import com.example.ecommerce.commons.exception.MerchantEmailAlreadyExistsException;
+import com.example.ecommerce.commons.exception.MerchantNotFoundException;
 import com.example.ecommerce.commons.model.MerchantModel;
 import com.example.ecommerce.entity.Merchant;
 import com.example.ecommerce.mapper.MerchantMapper;
@@ -40,7 +42,7 @@ public class MerchantServiceImpl implements MerchantService {
     @Override
     public MerchantModel findById(Long id) {
         Merchant merchant = merchantRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("No data found with id "+ id));
+                .orElseThrow(() -> new MerchantNotFoundException(id));
 
         return merchantMapper.toModel(merchant);
     }
@@ -49,7 +51,7 @@ public class MerchantServiceImpl implements MerchantService {
     public MerchantModel update(Long id, MerchantModel merchantModel) {
         log.info("update merchant by id {}",id);
         Merchant existingMerchant =merchantRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("No data found with id "+ id));
+                .orElseThrow(() -> new MerchantNotFoundException(id));
 
         // check duplicate email when updating the email
         if (!merchantModel.getEmail().isEmpty())
@@ -71,14 +73,14 @@ public class MerchantServiceImpl implements MerchantService {
         if(exist)
             merchantRepo.deleteById(id);
         else
-            throw new RuntimeException("No data found with id "+ id);
+            throw new MerchantNotFoundException(id);
 
         log.info("merchant deleted successfully ");
     }
 
     private void validateEmailExistance(String email) {
         if (merchantRepo.findByEmail(email).isPresent()) {
-            throw new IllegalArgumentException("Merchant email already exists");
+            throw new MerchantEmailAlreadyExistsException(email);
         }
     }
 
