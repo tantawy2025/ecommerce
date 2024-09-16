@@ -16,6 +16,7 @@ public interface MerchantService {
 
     public MerchantModel findById(Long id);
 
+    public MerchantModel update(Long id, MerchantModel merchantModel);
 
 
 }

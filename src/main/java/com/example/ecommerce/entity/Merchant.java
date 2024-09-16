@@ -3,11 +3,19 @@ package com.example.ecommerce.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Data
 @Table(name = "merchant", schema = "ecommerce")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@DynamicUpdate
 public class Merchant {
 
     @Id
@@ -32,6 +40,7 @@ public class Merchant {
     @Column(name = "status")
     @Schema(name = "status", example = "true")
     private boolean status = true;
+
 
 
 }

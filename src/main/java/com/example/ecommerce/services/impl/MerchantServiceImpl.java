@@ -22,12 +22,14 @@ public class MerchantServiceImpl implements MerchantService {
 
     @Override
     public void create(MerchantModel merchantModel) {
+        log.info("add  merchant by id ");
+        validateEmailExistance(merchantModel.getEmail());
 
-        if (merchantRepo.findByEmail(merchantModel.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("Merchant email already exists");
-        }
         merchantRepo.save(merchantMapper.toEntity(merchantModel));
+        log.info("merchant added successfully");
     }
+
+
 
     @Override
     public Page<MerchantModel> getAll(Pageable pageable) {
@@ -41,5 +43,53 @@ public class MerchantServiceImpl implements MerchantService {
                 .orElseThrow(() -> new RuntimeException("No data found with id "+ id));
 
         return merchantMapper.toModel(merchant);
+    }
+
+    @Override
+    public MerchantModel update(Long id, MerchantModel merchantModel) {
+        log.info("update merchant by id {}",id);
+        Merchant existingMerchant =merchantRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("No data found with id "+ id));
+
+        // check duplicate email when updating the email
+        if (!merchantModel.getEmail().isEmpty())
+            validateEmailExistance(merchantModel.getEmail());
+
+        updateMerchantDetails(existingMerchant, merchantModel);
+
+        merchantRepo.save(existingMerchant);
+        log.info("merchant update successfully ");
+
+        return merchantMapper.toModel(existingMerchant);
+    }
+
+    private void validateEmailExistance(String email) {
+        if (merchantRepo.findByEmail(email).isPresent()) {
+            throw new IllegalArgumentException("Merchant email already exists");
+        }
+    }
+
+    private void updateMerchantDetails(Merchant existingMerchant, MerchantModel merchantModel) {
+        if (merchantModel.getName() != null) {
+            existingMerchant.setName(merchantModel.getName());
+        }
+        if (merchantModel.getAddress() != null) {
+            existingMerchant.setAddress(merchantModel.getAddress());
+        }
+        if (merchantModel.getEmail() != null) {
+            existingMerchant.setEmail(merchantModel.getEmail());
+        }
+        // Only update status if it has changed
+        if (merchantModel.isStatus() != existingMerchant.isStatus()) {
+            existingMerchant.setStatus(merchantModel.isStatus());
+        }
+
+        /*
+        * existingMerchant = Merchant.builder()
+                        .name((merchantModel.getName()!=null)?merchantModel.getName():existingMerchant.getName())
+                                .address((merchantModel.getAddress()!=null)?merchantModel.getAddress():existingMerchant.getAddress())
+                                        .email((merchantModel.getEmail()!=null)?merchantModel.getEmail():existingMerchant.getEmail())
+                                                .status((!merchantModel.isStatus())?merchantModel.isStatus():existingMerchant.isStatus())
+                                                    .build();*/
     }
 }

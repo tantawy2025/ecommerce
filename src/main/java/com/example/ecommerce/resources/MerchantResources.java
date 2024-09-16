@@ -18,12 +18,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("merchants")
+@RequestMapping("api/v1/merchants")
 @RequiredArgsConstructor
 @Tag(name = "Merchant Management APIs")
 public class MerchantResources {
 
     private final MerchantService merchantService;
+
+
+
+
 
     @Operation(summary = "add new Merchant", description = "add new Merchant and return the created Merchant and status created ")
     @ApiResponses(value = {
@@ -39,6 +43,10 @@ public class MerchantResources {
 
     }
 
+
+
+
+
     @Operation(summary = "Get all merchants", description = "Returns list of merchants ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
@@ -53,6 +61,10 @@ public class MerchantResources {
         return new ResponseEntity<>(merchantModels, HttpStatus.OK);
     }
 
+
+
+
+
     @Operation(summary = "Get merchant by id", description = "Returns merchant as per the id ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
@@ -66,6 +78,24 @@ public class MerchantResources {
         MerchantModel merchantModel = merchantService.findById(id);
 
         return new ResponseEntity<>(merchantModel,HttpStatus.OK);
+    }
+
+
+
+
+
+    @Operation(summary = "update existing merchant by id", description = "Returns the updated merchant as per the id ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Role",content = @Content)
+    })
+    @PutMapping("{id}")
+    public ResponseEntity<MerchantModel> updateRole(@PathVariable Long id, @RequestBody MerchantModel merchantModel){
+        MerchantModel updatedMerchant = merchantService.update(id,merchantModel);
+
+        return new ResponseEntity<>(updatedMerchant,HttpStatus.OK);
     }
 
 

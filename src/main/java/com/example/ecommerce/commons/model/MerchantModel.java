@@ -1,8 +1,6 @@
 package com.example.ecommerce.commons.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @Data
@@ -19,5 +17,7 @@ public class MerchantModel {
 
     @Schema(name = "status", example = "true")
     private boolean status;
+
+
 
 }
