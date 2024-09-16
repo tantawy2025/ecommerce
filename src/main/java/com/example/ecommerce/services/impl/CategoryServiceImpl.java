@@ -64,6 +64,19 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.toModel(existingCategory);
     }
 
+    @Override
+    public void delete(Long id) {
+        log.info("Category merchant by id");
+        Boolean exist = categoryRepo.existsById(id);
+
+        if(exist)
+            categoryRepo.deleteById(id);
+        else
+            throw new NotFoundException("Category with ID " + id + " not found");
+
+        log.info("Category deleted successfully ");
+    }
+
     private void updateMerchantDetails(Category existingCategory, CategoryModel categoryModel) {
         if (categoryModel.getName() != null) {
             existingCategory.setName(categoryModel.getName());

@@ -15,5 +15,7 @@ public interface CategoryService {
 
     public CategoryModel update(Long id, CategoryModel merchantModel);
 
+    public void delete(Long id);
+
 
 }
