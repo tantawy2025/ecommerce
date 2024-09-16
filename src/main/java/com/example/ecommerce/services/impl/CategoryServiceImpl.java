@@ -1,12 +1,16 @@
 package com.example.ecommerce.services.impl;
 
 import com.example.ecommerce.commons.exception.AlreadyExistsException;
+import com.example.ecommerce.commons.exception.NotFoundException;
 import com.example.ecommerce.commons.model.CategoryModel;
+import com.example.ecommerce.entity.Category;
 import com.example.ecommerce.mapper.CategoryMapper;
 import com.example.ecommerce.repo.CategoryRepository;
 import com.example.ecommerce.services.CategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +29,20 @@ public class CategoryServiceImpl implements CategoryService {
 
         categoryRepo.save(categoryMapper.toEntity(categoryModel));
         log.info("category added successfully");
+    }
+
+    @Override
+    public Page<CategoryModel> getAll(Pageable pageable) {
+        Page<Category> categoryPage = categoryRepo.findAll(pageable);
+        return categoryPage.map(categoryMapper::toModel);
+    }
+
+    @Override
+    public CategoryModel findById(Long id) {
+        Category category = categoryRepo.findById(id)
+                .orElseThrow(() -> new NotFoundException("Category with ID " + id + " not found"));
+
+        return categoryMapper.toModel(category);
     }
 
     private void validateCategoryExistance(String name) {

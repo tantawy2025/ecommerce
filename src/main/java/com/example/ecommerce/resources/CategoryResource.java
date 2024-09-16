@@ -44,4 +44,42 @@ public class CategoryResource {
     }
 
 
+
+
+
+    @Operation(summary = "Get all Category", description = "Returns list of Category ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Roles",content = @Content)
+    })
+    @GetMapping
+    public ResponseEntity<Page<CategoryModel>> retrieveAllCategories(Pageable pageable){
+
+        Page<CategoryModel> categoryModels = categoryService.getAll(pageable);
+        return new ResponseEntity<>(categoryModels, HttpStatus.OK);
+    }
+
+
+
+
+
+    @Operation(summary = "Get Category by id", description = "Returns Category as per the id ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Roles",content = @Content)
+    })
+    @GetMapping("{id}")
+    public ResponseEntity<CategoryModel> retreiveCategoryById(@PathVariable Long id){
+
+        CategoryModel categoryModel = categoryService.findById(id);
+
+        return new ResponseEntity<>(categoryModel,HttpStatus.OK);
+    }
+
+
+
 }

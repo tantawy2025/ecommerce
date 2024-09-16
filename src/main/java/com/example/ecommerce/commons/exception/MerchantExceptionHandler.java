@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class MerchantExceptionHandler {
 
-    @ExceptionHandler(MerchantNotFoundException.class)
-    public ResponseEntity<String> handleMerchantNotFoundException(MerchantNotFoundException ex) {
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> handleMerchantNotFoundException(NotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
