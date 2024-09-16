@@ -82,4 +82,17 @@ public class CategoryResource {
 
 
 
+    @Operation(summary = "update existing Category by id", description = "Returns the updated Category as per the id ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Role",content = @Content)
+    })
+    @PutMapping("{id}")
+    public ResponseEntity<CategoryModel> updateCategory(@PathVariable Long id, @RequestBody CategoryModel categoryModel){
+        CategoryModel updatedCategory = categoryService.update(id,categoryModel);
+
+        return new ResponseEntity<>(updatedCategory,HttpStatus.OK);
+    }
 }

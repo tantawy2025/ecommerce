@@ -4,6 +4,7 @@ import com.example.ecommerce.commons.exception.AlreadyExistsException;
 import com.example.ecommerce.commons.exception.NotFoundException;
 import com.example.ecommerce.commons.model.CategoryModel;
 import com.example.ecommerce.entity.Category;
+import com.example.ecommerce.entity.Merchant;
 import com.example.ecommerce.mapper.CategoryMapper;
 import com.example.ecommerce.repo.CategoryRepository;
 import com.example.ecommerce.services.CategoryService;
@@ -43,6 +44,33 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow(() -> new NotFoundException("Category with ID " + id + " not found"));
 
         return categoryMapper.toModel(category);
+    }
+
+    @Override
+    public CategoryModel update(Long id, CategoryModel categoryModel) {
+        log.info("update Category by id {}",id);
+        Category existingCategory =categoryRepo.findById(id)
+                .orElseThrow(() -> new NotFoundException("Category with ID " + id + " not found"));
+
+        // check duplicate email when updating the email
+        if (!categoryModel.getName().isEmpty())
+            validateCategoryExistance(categoryModel.getName());
+
+        updateMerchantDetails(existingCategory, categoryModel);
+
+        categoryRepo.save(existingCategory);
+        log.info("Category updated successfully ");
+
+        return categoryMapper.toModel(existingCategory);
+    }
+
+    private void updateMerchantDetails(Category existingCategory, CategoryModel categoryModel) {
+        if (categoryModel.getName() != null) {
+            existingCategory.setName(categoryModel.getName());
+        }
+        if (categoryModel.getDescription() != null) {
+            existingCategory.setDescription(categoryModel.getDescription());
+        }
     }
 
     private void validateCategoryExistance(String name) {

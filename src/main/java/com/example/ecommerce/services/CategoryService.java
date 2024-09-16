@@ -13,5 +13,7 @@ public interface CategoryService {
 
     public CategoryModel findById(Long id);
 
+    public CategoryModel update(Long id, CategoryModel merchantModel);
+
 
 }
