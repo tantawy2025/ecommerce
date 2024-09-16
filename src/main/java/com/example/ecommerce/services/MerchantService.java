@@ -18,5 +18,7 @@ public interface MerchantService {
 
     public MerchantModel update(Long id, MerchantModel merchantModel);
 
+    public void delete(Long id);
+
 
 }

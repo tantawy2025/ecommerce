@@ -37,10 +37,11 @@ public class MerchantResources {
             @ApiResponse(responseCode = "404", description = "role already exist", content = @Content)
     })
     @PostMapping
-    public void addNewMerchant(@RequestBody MerchantModel merchantModel) {
+    public ResponseEntity<Void> addNewMerchant(@RequestBody MerchantModel merchantModel) {
 
         merchantService.create(merchantModel);
 
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
@@ -96,6 +97,22 @@ public class MerchantResources {
         MerchantModel updatedMerchant = merchantService.update(id,merchantModel);
 
         return new ResponseEntity<>(updatedMerchant,HttpStatus.OK);
+    }
+
+
+
+
+    @Operation(summary = "delete existing merchant by id", description = "Returns no content ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully deleted"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Role",content = @Content)
+    })
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteMerchant(@PathVariable Long id){
+        merchantService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 

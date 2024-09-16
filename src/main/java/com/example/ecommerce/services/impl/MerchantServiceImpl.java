@@ -63,6 +63,19 @@ public class MerchantServiceImpl implements MerchantService {
         return merchantMapper.toModel(existingMerchant);
     }
 
+    @Override
+    public void delete(Long id) {
+        log.info("delete merchant by id");
+        Boolean exist = merchantRepo.existsById(id);
+
+        if(exist)
+            merchantRepo.deleteById(id);
+        else
+            throw new RuntimeException("No data found with id "+ id);
+
+        log.info("merchant deleted successfully ");
+    }
+
     private void validateEmailExistance(String email) {
         if (merchantRepo.findByEmail(email).isPresent()) {
             throw new IllegalArgumentException("Merchant email already exists");
