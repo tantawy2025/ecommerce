@@ -7,6 +7,8 @@ import com.example.ecommerce.repo.MerchantRepository;
 import com.example.ecommerce.services.MerchantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,11 +21,25 @@ public class MerchantServiceImpl implements MerchantService {
     private final MerchantMapper merchantMapper;
 
     @Override
-    public Merchant create(MerchantModel merchantModel) {
+    public void create(MerchantModel merchantModel) {
 
         if (merchantRepo.findByEmail(merchantModel.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Merchant email already exists");
         }
-        return merchantRepo.save(merchantMapper.toEntity(merchantModel));
+        merchantRepo.save(merchantMapper.toEntity(merchantModel));
+    }
+
+    @Override
+    public Page<MerchantModel> getAll(Pageable pageable) {
+        Page<Merchant> merchantPage = merchantRepo.findAll(pageable);
+        return merchantPage.map(merchantMapper::toModel);
+    }
+
+    @Override
+    public MerchantModel findById(Long id) {
+        Merchant merchant = merchantRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("No data found with id "+ id));
+
+        return merchantMapper.toModel(merchant);
     }
 }

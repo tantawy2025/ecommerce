@@ -9,10 +9,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("merchants")
@@ -25,16 +28,45 @@ public class MerchantResources {
     @Operation(summary = "add new Merchant", description = "add new Merchant and return the created Merchant and status created ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully created"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
-            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
-            @ApiResponse(responseCode = "404", description = "role already exist",content = @Content)
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+            @ApiResponse(responseCode = "404", description = "role already exist", content = @Content)
     })
     @PostMapping
-    public void createRole(@RequestBody MerchantModel merchantModel){
+    public void addNewMerchant(@RequestBody MerchantModel merchantModel) {
 
-        Merchant savedMerchant = merchantService.create(merchantModel);
-
+        merchantService.create(merchantModel);
 
     }
+
+    @Operation(summary = "Get all merchants", description = "Returns list of merchants ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Roles",content = @Content)
+    })
+    @GetMapping
+    public ResponseEntity<Page<MerchantModel>> retrieveAllMerchants(Pageable pageable){
+
+        Page<MerchantModel> merchantModels = merchantService.getAll(pageable);
+        return new ResponseEntity<>(merchantModels, HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get merchant by id", description = "Returns merchant as per the id ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Roles",content = @Content)
+    })
+    @GetMapping("{id}")
+    public ResponseEntity<MerchantModel> retreiveMerchantById(@PathVariable Long id){
+
+        MerchantModel merchantModel = merchantService.findById(id);
+
+        return new ResponseEntity<>(merchantModel,HttpStatus.OK);
+    }
+
 
 }
