@@ -1,6 +1,6 @@
 package com.example.ecommerce.services.impl;
 
-import com.example.ecommerce.commons.exception.MerchantEmailAlreadyExistsException;
+import com.example.ecommerce.commons.exception.AlreadyExistsException;
 import com.example.ecommerce.commons.exception.MerchantNotFoundException;
 import com.example.ecommerce.commons.model.MerchantModel;
 import com.example.ecommerce.entity.Merchant;
@@ -24,7 +24,7 @@ public class MerchantServiceImpl implements MerchantService {
 
     @Override
     public void create(MerchantModel merchantModel) {
-        log.info("add  merchant by id ");
+        log.info("add  merchant ");
         validateEmailExistance(merchantModel.getEmail());
 
         merchantRepo.save(merchantMapper.toEntity(merchantModel));
@@ -80,7 +80,7 @@ public class MerchantServiceImpl implements MerchantService {
 
     private void validateEmailExistance(String email) {
         if (merchantRepo.findByEmail(email).isPresent()) {
-            throw new MerchantEmailAlreadyExistsException(email);
+            throw new AlreadyExistsException("Merchant email " + email + " already exists");
         }
     }
 

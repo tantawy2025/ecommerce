@@ -14,8 +14,8 @@ public class MerchantExceptionHandler {
     }
 
 
-    @ExceptionHandler(MerchantEmailAlreadyExistsException.class)
-    public ResponseEntity<String> handleMerchantEmailAlreadyExistsException(MerchantEmailAlreadyExistsException ex) {
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<String> handleMerchantEmailAlreadyExistsException(AlreadyExistsException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
