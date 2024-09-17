@@ -68,10 +68,23 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.toModel(existingProduct);
     }
 
+    @Override
+    public void delete(Long id) {
+        log.info("product merchant by id");
+        Boolean exist = productRepo.existsById(id);
+
+        if(exist)
+            productRepo.deleteById(id);
+        else
+            throw new NotFoundException("product with ID " + id + " not found");
+
+        log.info("product deleted successfully ");
+    }
+
 
     private void validateProductExistance(String name) {
         if (productRepo.findByName(name).isPresent()) {
-            throw new AlreadyExistsException("Category name " + name + " already exists");
+            throw new AlreadyExistsException("Product name " + name + " already exists");
         }
     }
 
