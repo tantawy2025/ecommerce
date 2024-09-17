@@ -80,4 +80,20 @@ public class ProductResource {
         return new ResponseEntity<>(productModel,HttpStatus.OK);
     }
 
+
+
+    @Operation(summary = "update existing Product by id", description = "Returns the updated Product as per the id ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Role",content = @Content)
+    })
+    @PutMapping("{id}")
+    public ResponseEntity<ProductModel> updateProduct(@PathVariable Long id, @RequestBody ProductModel productModel){
+        ProductModel updatedProduct = productService.update(id,productModel);
+
+        return new ResponseEntity<>(updatedProduct,HttpStatus.OK);
+    }
+
 }

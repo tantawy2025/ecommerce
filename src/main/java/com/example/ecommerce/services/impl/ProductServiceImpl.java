@@ -1,7 +1,10 @@
 package com.example.ecommerce.services.impl;
 
+import com.example.ecommerce.commons.exception.AlreadyExistsException;
 import com.example.ecommerce.commons.exception.NotFoundException;
+import com.example.ecommerce.commons.model.MerchantModel;
 import com.example.ecommerce.commons.model.ProductModel;
+import com.example.ecommerce.entity.Merchant;
 import com.example.ecommerce.entity.Product;
 import com.example.ecommerce.mapper.ProductMapper;
 import com.example.ecommerce.repo.ProductRepository;
@@ -26,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
     public void create(ProductModel productModel) {
 
         log.info("add  product ");
-        //validateProductExistance(productModel);
+        validateProductExistance(productModel.getName());
 
         productRepo.save(productMapper.toEntity(productModel));
         log.info("product added successfully");
@@ -47,5 +50,51 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.toModel(product);
     }
 
+    @Override
+    public ProductModel update(Long id, ProductModel productModel) {
+        log.info("update product by id {}",id);
+        Product existingProduct =productRepo.findById(id)
+                .orElseThrow(() -> new NotFoundException("product with ID " + id + " not found"));
+
+        // check duplicate name when updating the email
+        if (!productModel.getName().isEmpty())
+            validateProductExistance(productModel.getName());
+
+        updateProductDetails(existingProduct, productModel);
+
+        productRepo.save(existingProduct);
+        log.info("product updated successfully ");
+
+        return productMapper.toModel(existingProduct);
+    }
+
+
+    private void validateProductExistance(String name) {
+        if (productRepo.findByName(name).isPresent()) {
+            throw new AlreadyExistsException("Category name " + name + " already exists");
+        }
+    }
+
+    private void updateProductDetails(Product existingProduct, ProductModel productModel) {
+        if (productModel.getName() != null) {
+            existingProduct.setName(productModel.getName());
+        }
+        if (productModel.getSku() != null) {
+            existingProduct.setSku(productModel.getSku());
+        }
+        if (productModel.getDescription() != null) {
+            existingProduct.setDescription(productModel.getDescription());
+        }
+        if (productModel.getPrice() != null) {
+            existingProduct.setPrice(productModel.getPrice());
+        }
+        if (productModel.getStock() != null) {
+            existingProduct.setStock(productModel.getStock());
+        }
+        if (productModel.getStatus() != existingProduct.getStatus()) {
+            existingProduct.setStatus(productModel.getStatus());
+        }
+
+    }
 
 }

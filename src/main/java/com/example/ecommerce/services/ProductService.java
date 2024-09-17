@@ -13,4 +13,5 @@ public interface ProductService {
     ProductModel findById(Long id);
 
 
+    ProductModel update(Long id, ProductModel productModel);
 }
