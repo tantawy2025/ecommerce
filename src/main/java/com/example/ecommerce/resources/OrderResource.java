@@ -1,6 +1,7 @@
 package com.example.ecommerce.resources;
 
 import com.example.ecommerce.commons.model.OrderModel;
+import com.example.ecommerce.commons.model.OrderUpdateModel;
 import com.example.ecommerce.commons.model.ProductModel;
 import com.example.ecommerce.services.OrderService;
 import com.example.ecommerce.services.ProductService;
@@ -79,5 +80,21 @@ public class OrderResource {
         OrderModel orderModel = orderService.findById(id);
 
         return new ResponseEntity<>(orderModel,HttpStatus.OK);
+    }
+
+
+
+    @Operation(summary = "update existing Order by id", description = "Returns the updated Order as per the id ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Role",content = @Content)
+    })
+    @PutMapping("{id}")
+    public ResponseEntity<OrderModel> updateProduct(@PathVariable Long id, @RequestBody OrderUpdateModel orderUpdateModel){
+        OrderModel updatedOrder = orderService.update(id,orderUpdateModel);
+
+        return new ResponseEntity<>(updatedOrder,HttpStatus.OK);
     }
 }

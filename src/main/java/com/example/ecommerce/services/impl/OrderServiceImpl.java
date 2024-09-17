@@ -2,7 +2,9 @@ package com.example.ecommerce.services.impl;
 
 import com.example.ecommerce.commons.exception.NotFoundException;
 import com.example.ecommerce.commons.model.OrderModel;
+import com.example.ecommerce.commons.model.OrderUpdateModel;
 import com.example.ecommerce.entity.Order;
+import com.example.ecommerce.entity.Product;
 import com.example.ecommerce.mapper.OrderMapper;
 import com.example.ecommerce.repo.OrderRepository;
 import com.example.ecommerce.services.OrderService;
@@ -41,6 +43,31 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new NotFoundException("Order with ID " + id + " not found"));
 
         return orderMapper.toModel(order);
+    }
+
+    @Override
+    public OrderModel update(Long id, OrderUpdateModel orderUpdateModel) {
+        log.info("update Order by id {}",id);
+        Order existingOrder =orderRepo.findById(id)
+                .orElseThrow(() -> new NotFoundException("Order with ID " + id + " not found"));
+
+
+        updateOrderDetails(existingOrder, orderUpdateModel);
+
+        orderRepo.save(existingOrder);
+        log.info("Order updated successfully ");
+
+        return orderMapper.toModel(existingOrder);
+    }
+
+    private void updateOrderDetails(Order existingOrder, OrderUpdateModel orderUpdateModel) {
+        if (orderUpdateModel.getBillingAddress() != null) {
+            existingOrder.setBillingAddress(orderUpdateModel.getBillingAddress());
+        }
+        if (orderUpdateModel.getOrderStatus() != null) {
+            existingOrder.setOrderStatus(orderUpdateModel.getOrderStatus());
+        }
+
     }
 
 }
