@@ -60,6 +60,19 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toModel(existingOrder);
     }
 
+    @Override
+    public void delete(Long id) {
+        log.info("product Order by id");
+        Boolean exist = orderRepo.existsById(id);
+
+        if(exist)
+            orderRepo.deleteById(id);
+        else
+            throw new NotFoundException("Order with ID " + id + " not found");
+
+        log.info("Order deleted successfully ");
+    }
+
     private void updateOrderDetails(Order existingOrder, OrderUpdateModel orderUpdateModel) {
         if (orderUpdateModel.getBillingAddress() != null) {
             existingOrder.setBillingAddress(orderUpdateModel.getBillingAddress());

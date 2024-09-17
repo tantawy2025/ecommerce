@@ -15,4 +15,6 @@ public interface OrderService {
     OrderModel findById(Long id);
 
     OrderModel update(Long id, OrderUpdateModel orderUpdateModel);
+
+    void delete(Long id);
 }

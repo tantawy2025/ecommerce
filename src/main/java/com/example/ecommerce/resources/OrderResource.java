@@ -97,4 +97,21 @@ public class OrderResource {
 
         return new ResponseEntity<>(updatedOrder,HttpStatus.OK);
     }
+
+
+
+
+
+    @Operation(summary = "delete existing Order by id", description = "Returns no content ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully deleted"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Role",content = @Content)
+    })
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long id){
+        orderService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
