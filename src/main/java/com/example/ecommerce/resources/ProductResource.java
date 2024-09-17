@@ -10,12 +10,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -44,5 +43,41 @@ public class ProductResource {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+
+
+
+
+    @Operation(summary = "Get all Product", description = "Returns list of Product ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Roles",content = @Content)
+    })
+    @GetMapping
+    public ResponseEntity<Page<ProductModel>> retrieveAllProducts(Pageable pageable){
+
+        Page<ProductModel> productModels = productService.getAll(pageable);
+        return new ResponseEntity<>(productModels, HttpStatus.OK);
+    }
+
+
+
+
+
+    @Operation(summary = "Get Product by id", description = "Returns Product as per the id ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Roles",content = @Content)
+    })
+    @GetMapping("{id}")
+    public ResponseEntity<ProductModel> retreiveProductById(@PathVariable Long id){
+
+        ProductModel productModel = productService.findById(id);
+
+        return new ResponseEntity<>(productModel,HttpStatus.OK);
+    }
 
 }
