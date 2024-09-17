@@ -28,7 +28,7 @@ public class CategoryResource {
 
 
 
-    @Operation(summary = "add new Category", description = "add new Category and return the created Category and status created ")
+    @Operation(summary = "add new Category", description = "add new Category and return the  status created ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully created"),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),

@@ -29,7 +29,7 @@ public class MerchantResources {
 
 
 
-    @Operation(summary = "add new Merchant", description = "add new Merchant and return the created Merchant and status created ")
+    @Operation(summary = "add new Merchant", description = "add new Merchant and return the status created ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully created"),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
