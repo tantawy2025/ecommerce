@@ -96,11 +96,25 @@ CREATE TABLE ecommerce."order"
         ON DELETE NO ACTION
         NOT VALID
 );
+ALTER TABLE IF EXISTS ecommerce."order"
+    RENAME "order-state" TO order_status;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    ADD COLUMN shipping_address character varying;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    ADD COLUMN billing_address character varying;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    ADD COLUMN payment_status character varying;
 
 ALTER TABLE IF EXISTS ecommerce."order"
     OWNER to postgres;
 
+ALTER TABLE IF EXISTS ecommerce."order" DROP COLUMN IF EXISTS order_status;
 
+ALTER TABLE IF EXISTS ecommerce."order"
+    ADD COLUMN order_status character varying;
 
 ---------------------  create order details table -------------------------------------
 
