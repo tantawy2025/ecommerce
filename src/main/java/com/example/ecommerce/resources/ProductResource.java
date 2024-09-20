@@ -110,5 +110,55 @@ public class ProductResource {
         productService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+//
+//    // get all with pageable can replace all the below
+//
+//    @GetMapping("/search/name")
+//    public ResponseEntity<Page<ProductModel>> searchProductsByName(@RequestParam String name,Pageable pageable) {
+//        Page<ProductModel> products = productService.searchProductsByName(name,pageable);
+//        if (products.isEmpty()) {
+//            return ResponseEntity.noContent().build();  // Return 204 if no products found
+//        }
+//        return ResponseEntity.ok(products);  // Return 200 and the list of products
+//    }
+//
+//    // Search products by SKU
+//    @GetMapping("/search/sku")
+//    public ResponseEntity<Page<ProductModel>> searchProductsBySku(@RequestParam String sku,Pageable pageable) {
+//        Page<ProductModel> products = productService.searchProductsBySku(sku,pageable);
+//        if (products.isEmpty()) {
+//            return ResponseEntity.notFound().build();  // Return 404 if no product found
+//        }
+//        return ResponseEntity.ok(products);  // Return the product (SKU should be unique, so one product)
+//    }
+//
+//    @GetMapping("/search")
+//    public ResponseEntity<Page<ProductModel>> searchProducts(@RequestParam(required = false) String name,
+//                                                             @RequestParam(required = false) String sku,
+//                                                             @RequestParam(required = false) Long id,
+//                                                             Pageable pageable) {
+//
+//        // If SKU is provided, search by SKU
+//        if (sku != null) {
+//            Page<ProductModel> products = productService.searchProductsBySku(sku,pageable);
+//            if (products.isEmpty()) {
+//                return ResponseEntity.notFound().build();  // Return 404 if no product found
+//            }
+//            return ResponseEntity.ok(products);
+//        }
+//
+//        // If name is provided, search by name
+//        if (name != null) {
+//            Page<ProductModel> products = productService.searchProductsByName(name,pageable);
+//            if (products.isEmpty()) {
+//                return ResponseEntity.noContent().build();  // Return 204 if no products found
+//            }
+//            return ResponseEntity.ok(products);  // Return 200 and the list of products
+//        }
+//
+//        Page<ProductModel> productModels = productService.getAll(pageable);
+//        return new ResponseEntity<>(productModels, HttpStatus.OK);
+//
+//    }
 
 }

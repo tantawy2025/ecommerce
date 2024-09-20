@@ -25,12 +25,12 @@ public class OrderItem {
     @Schema(description = "id", example = "1", required = true)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     @Schema(description = "Product ID", example = "1", required = true)
     private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     @Schema(description = "Order ID", example = "1001", required = true)
     private Order order;

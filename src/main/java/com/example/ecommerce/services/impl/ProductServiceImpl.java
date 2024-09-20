@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -78,6 +80,23 @@ public class ProductServiceImpl implements ProductService {
 
         log.info("product deleted successfully ");
     }
+
+    @Override
+    public List<Product> findByMerchantId(Long id) {
+        return productRepo.findByMerchant_id(id);
+
+    }
+
+//    @Override
+//    public Page<ProductModel> searchProductsByName(String name,Pageable pageable) {
+//        return productRepo.findByNameContainingIgnoreCase(name,pageable).map(productMapper::toModel);
+//
+//    }
+//
+//    @Override
+//    public Page<ProductModel> searchProductsBySku(String sku,Pageable pageable) {
+//        return productRepo.findBySku(sku,pageable).map(productMapper::toModel);
+//    }
 
 
     private void validateProductExistance(String name) {

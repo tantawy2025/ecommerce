@@ -2,6 +2,7 @@ package com.example.ecommerce.resources;
 
 import com.example.ecommerce.commons.model.OrderItemModel;
 import com.example.ecommerce.commons.model.OrderModel;
+import com.example.ecommerce.commons.model.OrderUpdateModel;
 import com.example.ecommerce.commons.model.ProductModel;
 import com.example.ecommerce.repo.entity.Order;
 import com.example.ecommerce.repo.entity.OrderItem;
@@ -95,6 +96,7 @@ public class OrderItemResource {
 
         return new ResponseEntity<>(orderItem,HttpStatus.OK);
     }
+
 
 
 

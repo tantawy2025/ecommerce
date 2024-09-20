@@ -1,7 +1,13 @@
 package com.example.ecommerce.resources;
 
 import com.example.ecommerce.commons.model.MerchantModel;
+import com.example.ecommerce.commons.model.MerchantProductsModel;
+import com.example.ecommerce.commons.model.ProductModel;
+import com.example.ecommerce.repo.entity.Product;
 import com.example.ecommerce.services.MerchantService;
+import com.example.ecommerce.services.ProductService;
+import com.example.ecommerce.services.mapper.MerchantProductMapper;
+import com.example.ecommerce.services.mapper.MerchantUpdatedModelMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,6 +20,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("v1/merchants")
@@ -23,9 +31,11 @@ public class MerchantResources {
 
     private final MerchantService merchantService;
 
+    private final ProductService productService;
 
+    private final MerchantUpdatedModelMapper merchantUpdatedModelMapper;
 
-
+    private final MerchantProductMapper merchantProductMapper;
 
     @Operation(summary = "add new Merchant", description = "add new Merchant and return the status created ")
     @ApiResponses(value = {
@@ -80,7 +90,26 @@ public class MerchantResources {
     }
 
 
+    @Operation(summary = "Get merchant products by id", description = "Returns merchant products as per the id ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden",content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found - No Roles",content = @Content)
+    })
+    @GetMapping("{id}/products")
+    public ResponseEntity<MerchantProductsModel> retreiveMerchantProductsById(@PathVariable Long id){
 
+
+
+        MerchantModel merchantModel = merchantService.findById(id);
+
+        List<Product> products = productService.findByMerchantId(id);
+
+        MerchantProductsModel merchantProductsModel = merchantUpdatedModelMapper.toEntity(merchantModel);
+        merchantProductsModel.setProducts(merchantProductMapper.toProductModelList(products));
+        return new ResponseEntity<>(merchantProductsModel,HttpStatus.OK);
+    }
 
 
     @Operation(summary = "update existing merchant by id", description = "Returns the updated merchant as per the id ")
