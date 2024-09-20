@@ -1,9 +1,7 @@
 package com.example.ecommerce.resources;
 
 import com.example.ecommerce.commons.model.CategoryModel;
-import com.example.ecommerce.commons.model.MerchantModel;
 import com.example.ecommerce.services.CategoryService;
-import com.example.ecommerce.services.MerchantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -17,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/categories")
+@RequestMapping("v1/categories")
 @RequiredArgsConstructor
 @Tag(name = "Category Management APIs")
 public class CategoryResource {

@@ -2,9 +2,7 @@ package com.example.ecommerce.resources;
 
 import com.example.ecommerce.commons.model.OrderModel;
 import com.example.ecommerce.commons.model.OrderUpdateModel;
-import com.example.ecommerce.commons.model.ProductModel;
 import com.example.ecommerce.services.OrderService;
-import com.example.ecommerce.services.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -18,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/orders")
+@RequestMapping("v1/orders")
 @RequiredArgsConstructor
 @Tag(name = "Order Management APIs")
 public class OrderResource {

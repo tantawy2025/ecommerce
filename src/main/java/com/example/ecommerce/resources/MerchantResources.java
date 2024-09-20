@@ -1,7 +1,6 @@
 package com.example.ecommerce.resources;
 
 import com.example.ecommerce.commons.model.MerchantModel;
-import com.example.ecommerce.entity.Merchant;
 import com.example.ecommerce.services.MerchantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -15,10 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/merchants")
+@RequestMapping("v1/merchants")
 @RequiredArgsConstructor
 @Tag(name = "Merchant Management APIs")
 public class MerchantResources {

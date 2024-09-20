@@ -3,11 +3,11 @@ package com.example.ecommerce.resources;
 import com.example.ecommerce.commons.model.OrderItemModel;
 import com.example.ecommerce.commons.model.OrderModel;
 import com.example.ecommerce.commons.model.ProductModel;
-import com.example.ecommerce.entity.Order;
-import com.example.ecommerce.entity.OrderItem;
-import com.example.ecommerce.entity.Product;
-import com.example.ecommerce.mapper.OrderMapper;
-import com.example.ecommerce.mapper.ProductMapper;
+import com.example.ecommerce.repo.entity.Order;
+import com.example.ecommerce.repo.entity.OrderItem;
+import com.example.ecommerce.repo.entity.Product;
+import com.example.ecommerce.services.mapper.OrderMapper;
+import com.example.ecommerce.services.mapper.ProductMapper;
 import com.example.ecommerce.services.OrderItemService;
 import com.example.ecommerce.services.OrderService;
 import com.example.ecommerce.services.ProductService;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/order-items")
+@RequestMapping("v1/order-items")
 @RequiredArgsConstructor
 @Tag(name = "Order Item Management APIs")
 public class OrderItemResource {

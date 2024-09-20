@@ -1,7 +1,7 @@
-package com.example.ecommerce.mapper;
+package com.example.ecommerce.services.mapper;
 
 import com.example.ecommerce.commons.model.OrderModel;
-import com.example.ecommerce.entity.Order;
+import com.example.ecommerce.repo.entity.Order;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 

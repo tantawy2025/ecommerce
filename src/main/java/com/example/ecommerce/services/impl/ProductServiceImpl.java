@@ -2,11 +2,9 @@ package com.example.ecommerce.services.impl;
 
 import com.example.ecommerce.commons.exception.AlreadyExistsException;
 import com.example.ecommerce.commons.exception.NotFoundException;
-import com.example.ecommerce.commons.model.MerchantModel;
 import com.example.ecommerce.commons.model.ProductModel;
-import com.example.ecommerce.entity.Merchant;
-import com.example.ecommerce.entity.Product;
-import com.example.ecommerce.mapper.ProductMapper;
+import com.example.ecommerce.repo.entity.Product;
+import com.example.ecommerce.services.mapper.ProductMapper;
 import com.example.ecommerce.repo.ProductRepository;
 import com.example.ecommerce.services.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -60,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
         if (!productModel.getName().isEmpty())
             validateProductExistance(productModel.getName());
 
-        updateProductDetails(existingProduct, productModel);
+        existingProduct = productMapper.toEntity(productModel);
 
         productRepo.save(existingProduct);
         log.info("product updated successfully ");
@@ -88,26 +86,5 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    private void updateProductDetails(Product existingProduct, ProductModel productModel) {
-        if (productModel.getName() != null) {
-            existingProduct.setName(productModel.getName());
-        }
-        if (productModel.getSku() != null) {
-            existingProduct.setSku(productModel.getSku());
-        }
-        if (productModel.getDescription() != null) {
-            existingProduct.setDescription(productModel.getDescription());
-        }
-        if (productModel.getPrice() != null) {
-            existingProduct.setPrice(productModel.getPrice());
-        }
-        if (productModel.getStock() != null) {
-            existingProduct.setStock(productModel.getStock());
-        }
-        if (productModel.getStatus() != existingProduct.getStatus()) {
-            existingProduct.setStatus(productModel.getStatus());
-        }
-
-    }
 
 }

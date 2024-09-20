@@ -3,9 +3,8 @@ package com.example.ecommerce.services.impl;
 import com.example.ecommerce.commons.exception.AlreadyExistsException;
 import com.example.ecommerce.commons.exception.NotFoundException;
 import com.example.ecommerce.commons.model.CategoryModel;
-import com.example.ecommerce.entity.Category;
-import com.example.ecommerce.entity.Merchant;
-import com.example.ecommerce.mapper.CategoryMapper;
+import com.example.ecommerce.repo.entity.Category;
+import com.example.ecommerce.services.mapper.CategoryMapper;
 import com.example.ecommerce.repo.CategoryRepository;
 import com.example.ecommerce.services.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -56,7 +55,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (!categoryModel.getName().isEmpty())
             validateCategoryExistance(categoryModel.getName());
 
-        updateMerchantDetails(existingCategory, categoryModel);
+        existingCategory = categoryMapper.toEntity(categoryModel);
 
         categoryRepo.save(existingCategory);
         log.info("Category updated successfully ");
@@ -77,14 +76,6 @@ public class CategoryServiceImpl implements CategoryService {
         log.info("Category deleted successfully ");
     }
 
-    private void updateMerchantDetails(Category existingCategory, CategoryModel categoryModel) {
-        if (categoryModel.getName() != null) {
-            existingCategory.setName(categoryModel.getName());
-        }
-        if (categoryModel.getDescription() != null) {
-            existingCategory.setDescription(categoryModel.getDescription());
-        }
-    }
 
     private void validateCategoryExistance(String name) {
         if (categoryRepo.findByName(name).isPresent()) {

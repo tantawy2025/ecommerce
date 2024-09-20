@@ -3,8 +3,8 @@ package com.example.ecommerce.services.impl;
 import com.example.ecommerce.commons.exception.AlreadyExistsException;
 import com.example.ecommerce.commons.exception.NotFoundException;
 import com.example.ecommerce.commons.model.MerchantModel;
-import com.example.ecommerce.entity.Merchant;
-import com.example.ecommerce.mapper.MerchantMapper;
+import com.example.ecommerce.repo.entity.Merchant;
+import com.example.ecommerce.services.mapper.MerchantMapper;
 import com.example.ecommerce.repo.MerchantRepository;
 import com.example.ecommerce.services.MerchantService;
 import lombok.RequiredArgsConstructor;
@@ -57,7 +57,7 @@ public class MerchantServiceImpl implements MerchantService {
         if (!merchantModel.getEmail().isEmpty())
             validateEmailExistance(merchantModel.getEmail());
 
-        updateMerchantDetails(existingMerchant, merchantModel);
+        existingMerchant = merchantMapper.toEntity(merchantModel);
 
         merchantRepo.save(existingMerchant);
         log.info("merchant update successfully ");
@@ -84,27 +84,5 @@ public class MerchantServiceImpl implements MerchantService {
         }
     }
 
-    private void updateMerchantDetails(Merchant existingMerchant, MerchantModel merchantModel) {
-        if (merchantModel.getName() != null) {
-            existingMerchant.setName(merchantModel.getName());
-        }
-        if (merchantModel.getAddress() != null) {
-            existingMerchant.setAddress(merchantModel.getAddress());
-        }
-        if (merchantModel.getEmail() != null) {
-            existingMerchant.setEmail(merchantModel.getEmail());
-        }
-        // Only update status if it has changed
-        if (merchantModel.isStatus() != existingMerchant.isStatus()) {
-            existingMerchant.setStatus(merchantModel.isStatus());
-        }
 
-        /*
-        * existingMerchant = Merchant.builder()
-                        .name((merchantModel.getName()!=null)?merchantModel.getName():existingMerchant.getName())
-                                .address((merchantModel.getAddress()!=null)?merchantModel.getAddress():existingMerchant.getAddress())
-                                        .email((merchantModel.getEmail()!=null)?merchantModel.getEmail():existingMerchant.getEmail())
-                                                .status((!merchantModel.isStatus())?merchantModel.isStatus():existingMerchant.isStatus())
-                                                    .build();*/
-    }
 }

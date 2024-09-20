@@ -1,8 +1,7 @@
 package com.example.ecommerce.services;
 
 
-import com.example.ecommerce.commons.model.OrderItemModel;
-import com.example.ecommerce.entity.OrderItem;
+import com.example.ecommerce.repo.entity.OrderItem;
 
 public interface OrderItemService {
 

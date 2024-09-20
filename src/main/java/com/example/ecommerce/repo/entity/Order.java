@@ -1,4 +1,4 @@
-package com.example.ecommerce.entity;
+package com.example.ecommerce.repo.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -22,7 +22,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id", columnDefinition = "serial")
+    @Column(name = "id", columnDefinition = "serial")
     @Schema(description = "id", example = "1", required = true)
     private Long id;
 

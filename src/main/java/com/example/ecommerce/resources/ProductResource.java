@@ -1,8 +1,6 @@
 package com.example.ecommerce.resources;
 
-import com.example.ecommerce.commons.model.CategoryModel;
 import com.example.ecommerce.commons.model.ProductModel;
-import com.example.ecommerce.services.CategoryService;
 import com.example.ecommerce.services.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/products")
+@RequestMapping("v1/products")
 @RequiredArgsConstructor
 @Tag(name = "Product Management APIs")
 public class ProductResource {

@@ -1,12 +1,12 @@
-package com.example.ecommerce.entity;
+package com.example.ecommerce.repo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
@@ -15,21 +15,10 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @DynamicUpdate
 @Table(name = "product", schema = "ecommerce")
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id", columnDefinition = "serial")
-    @Schema(description = "id", example = "1", required = true)
-    private Long id;
-
-
-    @Column(name = "product_name", nullable = false)
-    @Schema(description = "name", example = "Laptop", required = true)
-    private String name;
+public class Product extends IdentifiableEntity {
 
 
     @Column(name = "sku", nullable = false, unique = true)
@@ -53,12 +42,12 @@ public class Product {
     private Boolean status = true;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     @Schema(description = "category", example = "1")
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "merchant_id", referencedColumnName = "merchant_id")
+    @JoinColumn(name = "merchant_id", referencedColumnName = "id")
     @Schema(description = "merchant", example = "1")
     private Merchant merchant;
 

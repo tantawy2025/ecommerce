@@ -1,8 +1,6 @@
 package com.example.ecommerce.services.impl;
 
-import com.example.ecommerce.commons.model.OrderItemModel;
-import com.example.ecommerce.entity.OrderItem;
-import com.example.ecommerce.mapper.OrderItemMapper;
+import com.example.ecommerce.repo.entity.OrderItem;
 import com.example.ecommerce.repo.OrderItemRepository;
 import com.example.ecommerce.services.OrderItemService;
 import lombok.RequiredArgsConstructor;

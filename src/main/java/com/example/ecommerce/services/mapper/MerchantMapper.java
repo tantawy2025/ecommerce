@@ -1,7 +1,7 @@
-package com.example.ecommerce.mapper;
+package com.example.ecommerce.services.mapper;
 
 import com.example.ecommerce.commons.model.MerchantModel;
-import com.example.ecommerce.entity.Merchant;
+import com.example.ecommerce.repo.entity.Merchant;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 

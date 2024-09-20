@@ -1,7 +1,5 @@
 package com.example.ecommerce.commons.model;
 
-import com.example.ecommerce.entity.Order;
-import com.example.ecommerce.entity.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

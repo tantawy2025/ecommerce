@@ -1,7 +1,7 @@
 package com.example.ecommerce.commons.model;
 
-import com.example.ecommerce.entity.Category;
-import com.example.ecommerce.entity.Merchant;
+import com.example.ecommerce.repo.entity.Category;
+import com.example.ecommerce.repo.entity.Merchant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import lombok.Data;

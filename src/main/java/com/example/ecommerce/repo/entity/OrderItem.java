@@ -1,4 +1,4 @@
-package com.example.ecommerce.entity;
+package com.example.ecommerce.repo.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -26,12 +26,12 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     @Schema(description = "Product ID", example = "1", required = true)
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     @Schema(description = "Order ID", example = "1001", required = true)
     private Order order;
 

@@ -96,25 +96,6 @@ CREATE TABLE ecommerce."order"
         ON DELETE NO ACTION
         NOT VALID
 );
-ALTER TABLE IF EXISTS ecommerce."order"
-    RENAME "order-state" TO order_status;
-
-ALTER TABLE IF EXISTS ecommerce."order"
-    ADD COLUMN shipping_address character varying;
-
-ALTER TABLE IF EXISTS ecommerce."order"
-    ADD COLUMN billing_address character varying;
-
-ALTER TABLE IF EXISTS ecommerce."order"
-    ADD COLUMN payment_status character varying;
-
-ALTER TABLE IF EXISTS ecommerce."order"
-    OWNER to postgres;
-
-ALTER TABLE IF EXISTS ecommerce."order" DROP COLUMN IF EXISTS order_status;
-
-ALTER TABLE IF EXISTS ecommerce."order"
-    ADD COLUMN order_status character varying;
 
 ---------------------  create order details table -------------------------------------
 
@@ -145,4 +126,51 @@ ALTER TABLE IF EXISTS ecommerce.order_details
 
 -----------------------------------------------------------------------------------
 
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    RENAME "order-state" TO order_status;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    ADD COLUMN shipping_address character varying;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    ADD COLUMN billing_address character varying;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    ADD COLUMN payment_status character varying;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    OWNER to postgres;
+
+ALTER TABLE IF EXISTS ecommerce."order" DROP COLUMN IF EXISTS order_status;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    ADD COLUMN order_status character varying;
+
+
+
+ALTER TABLE IF EXISTS ecommerce.product
+    RENAME product_id TO id;
+
+ALTER TABLE IF EXISTS ecommerce.product
+    RENAME product_name TO name;
+
+
+ALTER TABLE IF EXISTS ecommerce.merchant
+    RENAME merchant_id TO id;
+
+ALTER TABLE IF EXISTS ecommerce.category
+    RENAME category_id TO id;
+
+ALTER TABLE IF EXISTS ecommerce.category
+    RENAME category_name TO name;
+
+ALTER TABLE IF EXISTS ecommerce.customer
+    RENAME customer_id TO id;
+
+ALTER TABLE IF EXISTS ecommerce.customer
+    RENAME customer_name TO name;
+
+ALTER TABLE IF EXISTS ecommerce."order"
+    RENAME order_id TO id;
 

@@ -1,6 +1,6 @@
 package com.example.ecommerce.repo;
 
-import com.example.ecommerce.entity.Merchant;
+import com.example.ecommerce.repo.entity.Merchant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
