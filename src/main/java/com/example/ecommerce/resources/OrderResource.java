@@ -90,7 +90,7 @@ public class OrderResource {
             @ApiResponse(responseCode = "404", description = "Not found - No Role",content = @Content)
     })
     @PutMapping("{id}")
-    public ResponseEntity<OrderModel> updateProduct(@PathVariable Long id, @RequestBody OrderUpdateModel orderUpdateModel){
+    public ResponseEntity<OrderModel> updateOrder(@PathVariable Long id, @RequestBody OrderUpdateModel orderUpdateModel){
         OrderModel updatedOrder = orderService.update(id,orderUpdateModel);
 
         return new ResponseEntity<>(updatedOrder,HttpStatus.OK);
