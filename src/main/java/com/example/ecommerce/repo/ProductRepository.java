@@ -14,7 +14,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     Optional<Product> findByName(String name);
 
-    List<Product> findByMerchant_id(Long merchantId);
+    List<Product> findByMerchantId(Long merchantId);
 
 
     Page<Product> findAll(Pageable pageable); // Support for pagination

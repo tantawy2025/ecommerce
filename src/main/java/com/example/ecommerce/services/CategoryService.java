@@ -5,17 +5,16 @@ import com.example.ecommerce.commons.model.MerchantModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface CategoryService {
+ public interface CategoryService {
 
-    public void create(CategoryModel categoryModel);
+     void create(CategoryModel categoryModel);
 
-    public Page<CategoryModel> getAll(Pageable pageable);
+     Page<CategoryModel> getAll(Pageable pageable);
 
-    public CategoryModel findById(Long id);
+     CategoryModel findById(Long id);
 
-    public CategoryModel update(Long id, CategoryModel merchantModel);
+     CategoryModel update(Long id, CategoryModel merchantModel);
 
-    public void delete(Long id);
-
+     void delete(Long id);
 
 }

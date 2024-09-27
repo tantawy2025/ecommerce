@@ -9,6 +9,7 @@ import com.example.ecommerce.repo.OrderRepository;
 import com.example.ecommerce.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -73,9 +74,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private void updateOrderDetails(Order existingOrder, OrderUpdateModel orderUpdateModel) {
-        if (orderUpdateModel.getBillingAddress() != null) {
+        if (!Strings.isEmpty(orderUpdateModel.getBillingAddress())) {
             existingOrder.setBillingAddress(orderUpdateModel.getBillingAddress());
         }
+
         if (orderUpdateModel.getOrderStatus() != null) {
             existingOrder.setOrderStatus(orderUpdateModel.getOrderStatus());
         }

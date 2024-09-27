@@ -83,7 +83,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findByMerchantId(Long id) {
-        return productRepo.findByMerchant_id(id);
+        return productRepo.findByMerchantId(id);
 
     }
 

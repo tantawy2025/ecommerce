@@ -33,16 +33,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Page<CategoryModel> getAll(Pageable pageable) {
-        Page<Category> categoryPage = categoryRepo.findAll(pageable);
-        return categoryPage.map(categoryMapper::toModel);
+        return categoryRepo.findAll(pageable).map(categoryMapper::toModel);
     }
 
     @Override
     public CategoryModel findById(Long id) {
-        Category category = categoryRepo.findById(id)
+        return categoryRepo.findById(id)
+                .map(categoryMapper::toModel)
                 .orElseThrow(() -> new NotFoundException("Category with ID " + id + " not found"));
-
-        return categoryMapper.toModel(category);
     }
 
     @Override
